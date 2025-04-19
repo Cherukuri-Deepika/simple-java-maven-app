@@ -4,25 +4,31 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Cherukuri-Deepika/simple-java-maven-app.git', branch: 'main'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                bat 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'target\\surefire-reports\\*.xml'
                 }
             }
         }
-        stage('Deliver') { 
+        stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                bat 'echo Simulating deployment step...'
             }
         }
     }
 }
+
