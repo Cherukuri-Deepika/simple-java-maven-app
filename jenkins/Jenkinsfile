@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Cherukuri-Deepika/simple-java-maven-app.git', branch: 'main'
+                git url: 'https://github.com/Cherukuri-Deepika/simple-java-maven-app.git', branch: 'master'
             }
         }
         stage('Build') {
